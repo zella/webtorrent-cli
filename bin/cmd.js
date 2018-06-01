@@ -450,6 +450,7 @@ function runDownload (torrentId) {
     } else if (argv.mplayer) {
       openPlayer(MPLAYER_EXEC + ' ' + href)
     } else if (argv.mpv) {
+      href = href + '/' + torrent.infoHash + '/' + torrent.files[index].name
       openPlayer(MPV_EXEC + ' ' + href)
     } else if (argv.omx) {
       openPlayer(OMX_EXEC + ' ' + href)
