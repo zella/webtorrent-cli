@@ -436,6 +436,8 @@ function runDownload (torrentId) {
     if (playerName) torrent.files[index].select()
     if (argv.stdout) torrent.files[index].createReadStream().pipe(process.stdout)
 
+    href = href + '/' + torrent.infoHash + '/' + encodeURIComponent(torrent.files[index].name)
+
     if (argv.vlc) {
       vlcCommand(function (err, vlcCmd) {
         if (err) return fatalError(err)
@@ -450,7 +452,6 @@ function runDownload (torrentId) {
     } else if (argv.mplayer) {
       openPlayer(MPLAYER_EXEC + ' ' + href)
     } else if (argv.mpv) {
-      href = href + '/' + torrent.infoHash + '/' + encodeURIComponent(torrent.files[index].name)
       openPlayer(MPV_EXEC + ' ' + href)
     } else if (argv.omx) {
       openPlayer(OMX_EXEC + ' ' + href)
