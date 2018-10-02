@@ -364,7 +364,7 @@ function runDownload (torrentId) {
     argv.out = process.cwd()
   }
 
-  client = new WebTorrent({ blocklist: argv.blocklist })
+  const client = new WebTorrent({ blocklist: argv.blocklist })
   client.on('error', fatalError)
 
   const { out: path, announce } = argv
@@ -587,7 +587,7 @@ function runDownloadMeta (torrentId) {
     argv.out = process.cwd()
   }
 
-  client = new WebTorrent({ blocklist: argv.blocklist })
+  const client = new WebTorrent({ blocklist: argv.blocklist })
   client.on('error', fatalError)
 
   const torrent = client.add(torrentId, {
@@ -634,7 +634,7 @@ function runSeed (input) {
     return
   }
 
-  client = new WebTorrent({ blocklist: argv.blocklist })
+  const client = new WebTorrent({ blocklist: argv.blocklist })
   client.on('error', fatalError)
 
   client.seed(input, { announce: argv.announce }, torrent => {
