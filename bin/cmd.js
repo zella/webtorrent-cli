@@ -414,7 +414,7 @@ function runDownload (torrentId) {
   })
 
   // Start http server
-  server = torrent.createServer()
+  const server = torrent.createServer()
 
   function initServer () {
     if (torrent.ready) {
