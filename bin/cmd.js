@@ -168,6 +168,8 @@ const playerName = argv.airplay
 
 const command = argv._[0]
 
+let client, href, server, serving
+
 if (['info', 'create', 'download', 'add', 'seed'].includes(command) && argv._.length === 1) {
   runHelp()
 } else if (command === 'help' || argv.help) {
@@ -357,14 +359,12 @@ function runCreate (input) {
   })
 }
 
-let client, href, server, serving
-
 function runDownload (torrentId) {
   if (!argv.out && !argv.stdout && !playerName) {
     argv.out = process.cwd()
   }
 
-  const client = new WebTorrent({ blocklist: argv.blocklist })
+  client = new WebTorrent({ blocklist: argv.blocklist })
   client.on('error', fatalError)
 
   const { out: path, announce } = argv
@@ -414,7 +414,7 @@ function runDownload (torrentId) {
   })
 
   // Start http server
-  const server = torrent.createServer()
+  server = torrent.createServer()
 
   function initServer () {
     if (torrent.ready) {
@@ -587,7 +587,7 @@ function runDownloadMeta (torrentId) {
     argv.out = process.cwd()
   }
 
-  const client = new WebTorrent({ blocklist: argv.blocklist })
+  client = new WebTorrent({ blocklist: argv.blocklist })
   client.on('error', fatalError)
 
   const torrent = client.add(torrentId, {
