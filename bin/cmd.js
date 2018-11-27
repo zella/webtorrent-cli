@@ -472,6 +472,8 @@ function runDownload (torrentId) {
       torrent.files[index].createReadStream().pipe(process.stdout)
     }
 
+    href = href + '/' + torrent.infoHash + '/' + encodeURIComponent(torrent.files[index].name)
+
     if (argv.vlc) {
       vlcCommand((err, vlcCmd) => {
         if (err) {
