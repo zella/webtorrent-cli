@@ -456,6 +456,10 @@ function runDownload (torrentId) {
       ? argv.select
       : torrent.files.indexOf(torrent.files.reduce((a, b) => a.length > b.length ? a : b))
 
+    if (!torrent.files[index]) {
+      errorAndExit(`There's no file that maps to index ${index}`)
+    }
+
     onSelection(index)
   }
 
