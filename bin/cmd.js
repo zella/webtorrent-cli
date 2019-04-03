@@ -564,7 +564,7 @@ function runDownload (torrentId) {
       dlnacasts.on('update', player => {
         const opts = {
           title: `WebTorrent - ${torrent.files[index].name}`,
-          type: mime.lookup(torrent.files[index].name)
+          type: mime.getType(torrent.files[index].name)
         }
 
         if (argv.subtitles) {
