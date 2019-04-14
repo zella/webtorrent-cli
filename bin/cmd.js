@@ -436,18 +436,16 @@ function runDownload (torrentId) {
 
   server.once('connection', () => (serving = true))
 
-  function onReady () {
+ function onReady () {
     if (typeof argv.select === 'boolean') {
-      clivas.line('Select a file to download:')
-
-      torrent.files.forEach((file, i) => clivas.line(
-        '{2+bold+magenta:%s} %s {blue:(%s)}',
-        i, file.name, prettierBytes(file.length)
-      ))
-
-      clivas.line('\nTo select a specific file, re-run `webtorrent` with "--select [index]"')
-      clivas.line('Example: webtorrent download "magnet:..." --select 0')
-
+      clivas.line("files begin")
+      torrent.files.forEach(function (file, i) {
+        clivas.line(
+          '%s:%s:%s',
+          i, file.path, file.length
+        )
+      })
+      clivas.line("files end")
       return gracefulExit()
     }
 
