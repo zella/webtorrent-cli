@@ -441,7 +441,7 @@ function runDownload (torrentId) {
       clivas.line("files begin")
       torrent.files.forEach(function (file, i) {
         clivas.line(
-          '%s:%s:%s',
+          '%s<:>%s<:>%s',
           i, file.path, file.length
         )
       })
