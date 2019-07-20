@@ -700,7 +700,7 @@ function drawTorrent (torrent) {
       line(`{green:Downloading to: }{bold:${argv.out}}`)
     }
 
-    line(`Speed:${speed}:Downloaded:${torrent.downloaded}:${torrent.length}:Uploaded:${torrent.uploaded}`)
+    line(`Speed<:>${speed}<:>Downloaded<:>${torrent.downloaded}<:>${torrent.length}<:>Uploaded<:>${torrent.uploaded}`)
 
     line(`{green:Running time:} {bold:${
       runtime
